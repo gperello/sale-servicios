@@ -38,7 +38,7 @@ namespace Sale.Base.Servicios.Classes
             };
         }
 
-        public Func<dynamic, dynamic> ExecuteService<TService, TObject>(string contentType = "", CultureInfo culture = null, int tipo = 1)
+        public Func<dynamic, dynamic> ExecuteService<TService, TObject>(string contentType = "", CultureInfo culture = null)
             where TService : IService<TObject>, new()
             where TObject : new()
         {
@@ -49,7 +49,7 @@ namespace Sale.Base.Servicios.Classes
                 try {
                     service.Context = this.Context;
                     service.QueryString = Request.Query;
-                    service.Request = Deserialize<TObject>(culture, tipo);
+                    service.Request = Deserialize<TObject>(culture);
                     if (service.Response.Status == Enums.StatusResult.OK) service.ExecuteService(x);
                 }
                 catch (Exception ex) {
@@ -59,7 +59,7 @@ namespace Sale.Base.Servicios.Classes
             };
         }
 
-        public Func<dynamic, dynamic> ExecuteService<TService, TObject>(CultureInfo culture, int tipo = 1)
+        public Func<dynamic, dynamic> ExecuteService<TService, TObject>(CultureInfo culture)
             where TService : IService<TObject>, new()
             where TObject : new()
         {
@@ -71,7 +71,7 @@ namespace Sale.Base.Servicios.Classes
                 {
                     service.Context = this.Context;
                     service.QueryString = Request.Query;
-                    service.Request = Deserialize<TObject>(culture, tipo);
+                    service.Request = Deserialize<TObject>(culture);
                     if (service.Response.Status == Enums.StatusResult.OK) service.ExecuteService(x);
                 }
                 catch (Exception ex)
@@ -82,28 +82,16 @@ namespace Sale.Base.Servicios.Classes
             };
         }
 
-        public Tout Deserialize<Tout>(CultureInfo culture = null, int tipo = 1)
+        public Tout Deserialize<Tout>(CultureInfo culture = null)
             where Tout : new()
         {
-            if (tipo == 1)
-            {
-                if (culture == null) culture = Culture;
-                var body = Request.Body;
-                int length = (int)body.Length; // this is a dynamic variable
-                byte[] data = new byte[length];
-                body.Read(data, 0, length);
-                var x = System.Text.Encoding.UTF8.GetString(data);
-                return JsonConvert.DeserializeObject<Tout>(x, new JsonSerializerSettings { Culture = culture });
-            }
-            else {
-                var res = new Tout();
-                var form = (DynamicDictionary)Context.Request.Form;
-                foreach (var key in form.Keys) {
-                    var pi = typeof(Tout).GetProperty(key);
-                    if(pi != null)if (form.TryGetValue(key, out dynamic value)) pi.SetValue(res, Convert.ChangeType(value, pi.PropertyType));
-                }
-                return res;
-            }
+            if (culture == null) culture = Culture;
+            var body = Request.Body;
+            int length = (int)body.Length; // this is a dynamic variable
+            byte[] data = new byte[length];
+            body.Read(data, 0, length);
+            var x = System.Text.Encoding.UTF8.GetString(data);
+            return JsonConvert.DeserializeObject<Tout>(x, new JsonSerializerSettings { Culture = culture });
         }
 
         private Response GetResponse(ServiceResponse result, string contentType = "") {
