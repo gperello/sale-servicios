@@ -13,7 +13,7 @@ namespace Sale.Servicios.AppMobile.Modelos
         public string name { get; set; }
         public string description { get; set; }
         public string picture { get; set; }
-        public string[] images { get; set; }
+        public Imagen[] images { get; set; }
         public decimal price { get; set; }
         public int qtd { get; set; }
     }
