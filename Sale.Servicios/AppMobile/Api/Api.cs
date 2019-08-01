@@ -10,6 +10,8 @@ namespace Sale.Servicios.Api
         {
             Get("usuarioget/{email}", ExecuteService<GetUsuario>());
             Post("usuariosave", ExecuteService<SaveUsuario, Usuario>());
+            Get("getciudades", ExecuteService<GetCiudades>());
+            Get("getcategorias", ExecuteService<GetCategorias>());
         }
 
     }

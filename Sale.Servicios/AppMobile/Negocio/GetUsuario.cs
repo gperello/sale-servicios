@@ -15,7 +15,7 @@ namespace Sale.Servicios.AppMobile.Negocio
             var usuario = Connection.GetObject<Usuario>("sp_usuarios_get", new List<SqlParameter> {
                 new SqlParameter{ ParameterName = "@email", Value = (string)x.email }
             });
-            if (usuario.id > 0) Response.SetResult(new { User = usuario });
+            if (usuario.id > 0) Response.SetResult(new { user = usuario });
             else Response.SetValidationError("Usuario no habilitado.");
         }
     }
