@@ -52,4 +52,13 @@ namespace Sale.Servicios.AppMobile.Modelos
         [Param(ParamName = "@pagina")]
         public int pagina { get; set; }
     }
+    public class DatosRequest
+    {
+        [Param(ParamName = "@str_posicion")]
+        public string posicion { get; set; }
+        [Param(ParamName = "@email")]
+        public string email { get; set; }
+        [Param(ParamName = "@pagina")]
+        public int pagina { get; set; }
+    }
 }

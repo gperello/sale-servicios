@@ -18,8 +18,7 @@ namespace Sale.Servicios.AppMobile.Negocio
             {
                 item.images = Connection.GetArray<Imagen>("sp_imagenes_get", new List<SqlParameter>
                 {
-                    new SqlParameter{ ParameterName = "@emp_id", Value = item.id },
-                    new SqlParameter{ ParameterName = "@tip_id", Value = 1 }
+                    new SqlParameter{ ParameterName = "@emp_id", Value = item.id }
                 }).ToArray();
             }
             foreach (var item in comercios)
@@ -29,9 +28,6 @@ namespace Sale.Servicios.AppMobile.Negocio
                     new SqlParameter{ ParameterName = "@emp_id", Value = item.id }
                 }).ToArray();
             }
-
-            var ciudades = Connection.GetArray<Ciudad>("sp_ciudades_lst");
-
 
             Response.SetResult(new { list = comercios });
         }

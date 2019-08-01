@@ -11,6 +11,8 @@ namespace Sale.Servicios.Api
             Get("usuarioget/{email}", ExecuteService<GetUsuario>());
             Post("usuariosave", ExecuteService<SaveUsuario, Usuario>());
             Post("getcomercios", ExecuteService<GetComercios, ComercioRequest>());
+            Post("getproductos", ExecuteService<GetDatos, DatosRequest>());
+
         }
 
     }
