@@ -47,8 +47,8 @@ namespace Sale.Servicios.AppMobile.Modelos
     public class ComercioRequest {
         [Param(ParamName = "@str_posicion")]
         public string posicion { get; set; }
-        [Param(ParamName = "@email")]
-        public string email { get; set; }
+        [Param(ParamName = "@usuid")]
+        public int usuid { get; set; }
         [Param(ParamName = "@pagina")]
         public int pagina { get; set; }
     }

@@ -12,6 +12,7 @@ namespace Sale.Servicios.Api
             Post("usuariosave", ExecuteService<SaveUsuario, Usuario>());
             Get("getciudades", ExecuteService<GetCiudades>());
             Get("getcategorias", ExecuteService<GetCategorias>());
+            Post("getdatos", ExecuteService<GetDatos, ComercioRequest>());
         }
 
     }
