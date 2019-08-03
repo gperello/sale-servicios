@@ -91,6 +91,10 @@
     <Compile Include="AppMobile\Modelos\Producto.cs" />
     <Compile Include="AppMobile\Modelos\Usuario.cs" />
     <Compile Include="AppMobile\Negocio\GetCategorias.cs" />
+    <Compile Include="AppMobile\Negocio\SaveComentario.cs" />
+    <Compile Include="AppMobile\Negocio\MarcarFavoritos.cs" />
+    <Compile Include="AppMobile\Negocio\MarcarLeidos.cs" />
+    <Compile Include="AppMobile\Negocio\GetMensajes.cs" />
     <Compile Include="AppMobile\Negocio\GetCiudades.cs" />
     <Compile Include="AppMobile\Negocio\GetDatos.cs" />
     <Compile Include="AppMobile\Negocio\GetComecios.cs" />

@@ -28,14 +28,22 @@ namespace Sale.Servicios.AppMobile.Modelos
         public double rating { get; set; }
         public Comentario[] reviews { get; set; }
     }
-
-    public class Comentario
+    
+   [Entity(SpSaveName = "sp_comentarios_insert")]
+   public class Comentario
     {
         public int id { get; set; }
+        [Param(ParamName = "@usuid")]
+        public int usuid { get; set; }
+        [Param(ParamName = "@empid")]
+        public int empid { get; set; }
         public string username { get; set; }
+        [Param(ParamName = "@titulo")]
         public string title { get; set; }
+        [Param(ParamName = "@comentario")]
         public string content { get; set; }
         public string date { get; set; }
+        [Param(ParamName = "@valoracion")]
         public int rating { get; set; }
     }
     public class Imagen
