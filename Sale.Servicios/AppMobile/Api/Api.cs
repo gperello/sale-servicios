@@ -9,7 +9,7 @@ namespace Sale.Servicios.Api
     {
         public AuthenticateModule()
         {
-            this.RequiresAuthentication();
+            //this.RequiresAuthentication();
             Get("usuarioget/{email}", ExecuteService<GetUsuario>());
             Post("usuariosave", ExecuteService<SaveUsuario, Usuario>());
             Get("getciudades", ExecuteService<GetCiudades>());
@@ -19,7 +19,7 @@ namespace Sale.Servicios.Api
             Get("marcarLeidos/{usuid}/{menid}", ExecuteService<MarcarLeidos>());
             Get("marcarFavoritos/{usuid}/{entid}/{tipid}/{ok}", ExecuteService<MarcarFavoritos>());
             Post("savecomentario", ExecuteService<SaveComentario, Comentario>());
-
+            Post("saveorden", ExecuteService<SaveOrden, Orden>());
 
         }
 

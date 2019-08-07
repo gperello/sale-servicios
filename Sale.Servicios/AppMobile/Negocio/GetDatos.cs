@@ -44,7 +44,12 @@ namespace Sale.Servicios.AppMobile.Negocio
                     new SqlParameter{ ParameterName = "@tip_id", Value = 2 }
                 }).ToArray();
             }
-            Response.SetResult(new { comercios = comercios, productos = productos, categorias = categorias, ciudades = ciudades });
+            Response.SetResult(new {
+                comercios = comercios,
+                productos = productos,
+                categorias = categorias,
+                ciudades = ciudades
+            });
         }
     }
 }
