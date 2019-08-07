@@ -44,12 +44,53 @@ namespace Sale.Servicios.AppMobile.Negocio
                     new SqlParameter{ ParameterName = "@tip_id", Value = 2 }
                 }).ToArray();
             }
-            Response.SetResult(new {
-                comercios = comercios,
-                productos = productos,
-                categorias = categorias,
-                ciudades = ciudades
+            // consulta para cargar comercios favoritos
+
+            var comfavoritos = Connection.GetArray<Comercio>("sp_empresas_favoritos", new List<SqlParameter>
+                {
+                    new SqlParameter{ ParameterName = "@usuid", Value = Request.usuid },
+                    new SqlParameter{ ParameterName = "@str_posicion", Value = Request.posicion }
+                });
+
+            foreach (var item in comfavoritos)
+            {
+                item.images = Connection.GetArray<Imagen>("sp_imagenes_get", new List<SqlParameter>
+                {
+                    new SqlParameter{ ParameterName = "@ent_id", Value = item.id },
+                    new SqlParameter{ ParameterName = "@tip_id", Value = 1 }
+                }).ToArray();
+            }
+            foreach (var item in comfavoritos)
+            {
+                item.reviews = Connection.GetArray<Comentario>("sp_comentarios_get", new List<SqlParameter>
+                {
+                    new SqlParameter{ ParameterName = "@emp_id", Value = item.id }
+                }).ToArray();
+            }
+            // constultar productos favoritos
+
+            var prodfavoritos = Connection.GetArray<Producto>("sp_productos_favoritos", new List<SqlParameter> {
+                    new SqlParameter{ ParameterName = "@usuid", Value = Request.usuid }
             });
+            foreach (var item in prodfavoritos)
+            {
+                item.images = Connection.GetArray<Imagen>("sp_imagenes_get", new List<SqlParameter>
+                {
+                    new SqlParameter{ ParameterName = "@ent_id", Value = item.id },
+                    new SqlParameter{ ParameterName = "@tip_id", Value = 2 }
+                }).ToArray();
+
+
+                Response.SetResult(new
+                {
+                    comercios = comercios,
+                    productos = productos,
+                    categorias = categorias,
+                    ciudades = ciudades,
+                    comfavoritos = comfavoritos,
+                    prodfavoritos = prodfavoritos,
+                });
+            }
         }
     }
 }
