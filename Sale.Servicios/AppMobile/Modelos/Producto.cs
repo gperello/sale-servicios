@@ -13,7 +13,7 @@ namespace Sale.Servicios.AppMobile.Modelos
         public bool favorite { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public string image { get; set; }
+        public string picture { get; set; }
         public Imagen[] images { get; set; }
         public decimal price { get; set; }
         public int qtd { get; set; }

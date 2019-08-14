@@ -12,6 +12,7 @@ namespace Sale.Servicios.AppMobile.Negocio
     {
         public override void ExecuteService(dynamic x)
         {
+            Request.posicion = "-31.434629 -64.446939";
             var comercios = Connection.GetArray<Comercio>(Request);
 
             foreach (var item in comercios)
@@ -79,18 +80,17 @@ namespace Sale.Servicios.AppMobile.Negocio
                     new SqlParameter{ ParameterName = "@ent_id", Value = item.id },
                     new SqlParameter{ ParameterName = "@tip_id", Value = 2 }
                 }).ToArray();
-
-
-                Response.SetResult(new
-                {
-                    comercios = comercios,
-                    productos = productos,
-                    categorias = categorias,
-                    ciudades = ciudades,
-                    comfavoritos = comfavoritos,
-                    prodfavoritos = prodfavoritos,
-                });
             }
+            Response.SetResult(new
+            {
+                comercios = comercios,
+                productos = productos,
+                categorias = categorias,
+                ciudades = ciudades,
+                comfavoritos = comfavoritos,
+                prodfavoritos = prodfavoritos,
+            });
+
         }
     }
 }
